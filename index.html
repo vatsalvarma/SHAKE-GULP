@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -619,6 +619,125 @@
     right:12%;  /* control position */
 }
 
+/* =============================
+   CONTACT FORM GLASS POPUP
+============================= */
+
+.contact-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.3);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+
+    opacity:0;
+    pointer-events:none;
+    transition:0.4s;
+}
+
+.contact-overlay.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.contact-form{
+    width:400px;
+    padding:40px;
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.25);
+    border:1px solid rgba(255,255,255,0.4);
+
+    text-align:center;
+}
+
+.contact-form h2{
+    margin-bottom:25px;
+}
+
+.contact-form input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+
+    border:none;
+    border-radius:10px;
+}
+
+.contact-form button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:black;
+    color:white;
+    cursor:pointer;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:25px;
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+        /* =============================
+   NAVBAR DROPDOWN
+============================= */
+
+.nav-item{
+    position:relative;
+}
+
+.dropdown{
+    position:absolute;
+    top:100%;
+    left:0;
+    margin-top:px;
+
+
+    min-width:220px;
+
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+
+    transition:0.3s ease;
+}
+
+.nav-item:hover .dropdown{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+.dropdown a{
+    display:block;
+    padding:8px 10px;
+    font-size:14px;
+    color:#000;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.25s;
+}
+
+.dropdown a:hover{
+    background:rgba(255,255,255,0.4);
+    padding-left:15px;
+}
+
     </style>
 </head>
 <body>
@@ -633,28 +752,65 @@
         </div>
 
         <div class="nav-links">
+
             <a href="#home">Home</a>
-            <a href="#traditional">Traditional Drinks</a>
-            <a href="#wellness">Wellness Drinks</a>
+
+            <!-- TRADITIONAL DROPDOWN -->
+            <div class="nav-item">
+                <a href="#traditional">Traditional Drinks</a>
+
+                <div class="dropdown">
+                    <a href="https://vatsalvarma.github.io/Jeerabtmlk-prbxx/">Jeera Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/Masala-btmlk-prbxx/">Masala Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/Dates-prbxx/">Date Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/ragibrml-prbxxx/">Ragi Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/Jeerabtmlk-prbxx/">Jeera Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/Sabjalass-prbxs/">Sabja Lassi</a>
+                    <a href="https://vatsalvarma.github.io/Sweetbtmlk-prbxx/">Buttermilk</a>
+                    <a href="https://vatsalvarma.github.io/Nmpsabja/">Nimbu Sabja</a>
+                    <a href="https://vatsalvarma.github.io/Nimpud-prbxx/">Nimbu Pudina</a>
+                    <a href="https://vatsalvarma.github.io/Sweetbtmlk-prbxx/">Sweet Buttermilk</a>
+                </div>
+            </div>
+
+            <!-- WELLNESS DROPDOWN -->
+            <div class="nav-item">
+                <a href="#wellness">Wellness Drinks</a>
+
+                <div class="dropdown">
+                    <a href="https://vatsalvarma.github.io/Ginger-prbxx/">Ginger Shot</a>
+                    <a href="https://vatsalvarma.github.io/GingTer-prbxx/">Ginger Turmeric Shot</a>
+                    <a href="https://vatsalvarma.github.io/Amla-prbrxx/">Amla Shot</a>
+                    <a href="https://vatsalvarma.github.io/Neem-prbxx/">Neem Shot</a>
+                    <a href="https://vatsalvarma.github.io/Moringa-prbxx/">Moringa Shot</a>
+                    <a href="https://vatsalvarma.github.io/wheatgrass-prbxxx/">Wheatgrass Shot</a>
+                    <a href="https://vatsalvarma.github.io/Barley-prbxx/">Barley Drink</a>
+                    <a href="https://vatsalvarma.github.io/sabudana-prbxx/">Sabudana Drink</a>
+                </div>
+            </div>
+
             <a href="#read">Read</a>
+
+            <a href="#" onclick="openContact()">Contact</a>
+
         </div>
 
     </div>
 
-<div class="background"></div>
+    <div class="background"></div>
 
-<div class="hero-text" id="homeTitle" >SHAKE THE ROOTS <br> GULP THE RITUAL</div>
+    <div class="hero-text" id="homeTitle" >SHAKE THE ROOTS <br> GULP THE RITUAL</div>
 
-<!-- Bottle Layer -->
-<div class="bottle-container">
-    <img id="bottleImage" class="bottle" src="https://i.ibb.co/0j2DSPV3/Amla-577x616.png">
+    <!-- Bottle Layer -->
+    <div class="bottle-container">
+        <img id="bottleImage" class="bottle" src="https://i.ibb.co/0j2DSPV3/Amla-577x616.png">
 
-    <div class="ingredients">
-        <img id="lemonImg" class="lemon" src="https://i.ibb.co/SWKpNbY/Element-1-without-blured.png">
-        <img id="mintImg" class="mint" src="">
-        <img id="jeeraImg" class="jeera" src="https://i.ibb.co/gMX9pstf/Element-2-without-blured.png">
+        <div class="ingredients">
+            <img id="lemonImg" class="lemon" src="https://i.ibb.co/SWKpNbY/Element-1-without-blured.png">
+            <img id="mintImg" class="mint" src="">
+            <img id="jeeraImg" class="jeera" src="https://i.ibb.co/gMX9pstf/Element-2-without-blured.png">
+        </div>
     </div>
-</div>
 
     <!-- LEFT BOTTLE -->
     <div class="side-bottle left-bottle">
@@ -666,15 +822,15 @@
         <img id="rightBottleImg" src="https://i.ibb.co/MyznJBNH/Moringa-577x616.png" class="bottle">
     </div>
 
-<!-- Arrows -->
-<div class="arrow arrow-left" onclick="prevBottle()">&#10094;</div>
-<div class="arrow arrow-right" onclick="nextBottle()">&#10095;</div>
+    <!-- Arrows -->
+    <div class="arrow arrow-left" onclick="prevBottle()">&#10094;</div>
+    <div class="arrow arrow-right" onclick="nextBottle()">&#10095;</div>
 
-<div id="bottleName" class="bottle-name">Neem Shot   •   Amla Shot   •   Moringa Shot</div>
+    <div id="bottleName" class="bottle-name">Neem Shot   •   Amla Shot   •   Moringa Shot</div>
 
-<div id="bottleContent" class="bottle-content">
+    <div id="bottleContent" class="bottle-content">
 
-</div>
+    </div>
 
 </section>
 
@@ -851,6 +1007,56 @@
 
 </footer>
 
+<!-- CONTACT FORM OVERLAY -->
+<div id="contactOverlay" class="contact-overlay">
+
+    <div class="contact-form">
+
+        <button class="close-btn" onclick="closeContact()">✕</button>
+
+        <h2>Contact Us</h2>
+
+        <form id="contactForm">
+
+            <input type="text" id="name" placeholder="Enter Your Name" required>
+
+            <input type="tel" id="number" placeholder="Enter Phone Number" required>
+
+            <input type="email" id="email" placeholder="Enter Email" required>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
+
+    (function(){
+emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+emailjs.send("service_336uilp","YOUR_TEMPLATE_ID",{
+name:document.getElementById("name").value,
+phone:document.getElementById("number").value,
+email:document.getElementById("email").value
+})
+
+.then(function(){
+alert("Message Sent Successfully!");
+closeContact();
+});
+
+});
+
+</script>
+
 <script>
 
     /* =============================
@@ -1000,10 +1206,10 @@ function updateBottle(){
     { name:"Date Buttermilk", bottle:"https://i.ibb.co/4wRH7CC0/Date-Buttermilk-544x652.png", content:"Ingredients: Dates • Curd • Water. \nA naturally sweet, nourishing drink that blends cooling buttermilk with the goodness of dates.", link:"https://vatsalvarma.github.io/Dates-prbxx/" },
     { name:"Nimbu Pudina", bottle:"https://i.ibb.co/zVPTgrjw/Nimbu-pudina-544x652.png", content:"Ingredients: Lemon • Fresh Mint (Pudina) • Water • Natural Sweetener • A pinch of Salt. \nA lively, cooling drink that blends citrus brightness with the refreshing lift of mint.", link:"https://vatsalvarma.github.io/Nimpud-prbxx/" },
     { name:"Ragi Buttermilk", bottle:"https://i.ibb.co/QjQrDvRf/Ragi-544x652.png", content:"Ingredients: Ragi (Finger Millet) • Curd • Water • Salt \nA nourishing blend of traditional millet and cooling buttermilk." , link:"https://vatsalvarma.github.io/ragibrml-prbxxx/"},
-    { name:"Sabja Lassi", bottle:"https://i.ibb.co/93Gx7RXY/Sabja-Lassi-544x652.png", content:"Ingredients: Curd • Water • Sabja (Basil) Seeds • Natural Sweetener. \nA creamy, cooling drink that blends traditional lassi with the soothing power of sabja seeds.", link:"https://vatsalvarma.github.io/Nmpsabja/" },
-    { name:"Nimbu Sabja", bottle:"https://i.ibb.co/5XBZZR0g/Nimbu-Sabja-544x652.png", content:"Ingredients: Lemon • Sabja (Basil) Seeds • Water • Natural Sweetener • \nA pinch of Salt. A zesty, cooling drink that combines citrus freshness with the soothing power of sabja seeds." ,link:"https://vatsalvarma.github.io/Sweetbtmlk-prbxx/" },
-    { name:"Buttermilk", bottle:"https://i.ibb.co/V0w5CkMV/Buttermilk-544x652.png", content:"Ingredients: Curd • Water • Salt. \nA light, traditional Indian cooler made for everyday balance." , link:"https://vatsalvarma.github.io/Masala-btmlk-prbxx/"},
-    { name:"Masala Buttermilk", bottle:"https://i.ibb.co/CsmVtxTg/Masala-Buttermilk-544x652.png", content:"Ingredients: Curd • Water • Ginger • Curry Leaves • Coriander Leaves • Green Chillies • Salt \nA spiced traditional cooler that refreshes the body while gently supporting digestion" , link:"https://vatsalvarma.github.io/ragibrml-prbxxx/"},
+    { name:"Sabja Lassi", bottle:"https://i.ibb.co/93Gx7RXY/Sabja-Lassi-544x652.png", content:"Ingredients: Curd • Water • Sabja (Basil) Seeds • Natural Sweetener. \nA creamy, cooling drink that blends traditional lassi with the soothing power of sabja seeds.", link:"https://vatsalvarma.github.io/Sabjalass-prbxs/" },
+    { name:"Nimbu Sabja", bottle:"https://i.ibb.co/5XBZZR0g/Nimbu-Sabja-544x652.png", content:"Ingredients: Lemon • Sabja (Basil) Seeds • Water • Natural Sweetener • \nA pinch of Salt. A zesty, cooling drink that combines citrus freshness with the soothing power of sabja seeds." ,link:"https://vatsalvarma.github.io/Nmpsabja/" },
+    { name:"Buttermilk", bottle:"https://i.ibb.co/V0w5CkMV/Buttermilk-544x652.png", content:"Ingredients: Curd • Water • Salt. \nA light, traditional Indian cooler made for everyday balance." , link:"https://vatsalvarma.github.io/Sweetbtmlk-prbxx/"},
+    { name:"Masala Buttermilk", bottle:"https://i.ibb.co/CsmVtxTg/Masala-Buttermilk-544x652.png", content:"Ingredients: Curd • Water • Ginger • Curry Leaves • Coriander Leaves • Green Chillies • Salt \nA spiced traditional cooler that refreshes the body while gently supporting digestion" , link:"https://vatsalvarma.github.io/Masala-btmlk-prbxx/"},
     { name:"Sweet Buttermilk", bottle:"bottle15.png", content:"Traditional cool drink.", link:"https://vatsalvarma.github.io/Sweetbtmlk-prbxx/" }
 ];
 
@@ -1068,7 +1274,7 @@ const shots = [
         name:"WheatGrass Shot",
         img:"https://i.ibb.co/wxcnDn5/Wheat-Grass-544x652.png",
         content:"Ingredients: Fresh Wheatgrass Extract • Water • A touch of Lemon. \nA vibrant green wellness shot made from freshly extracted wheatgrass.",
-        link:"https://vatsalvarma.github.io/GingTer-prbxx/"
+        link:"https://vatsalvarma.github.io/wheatgrass-prbxxx/"
     },
     {
         name:"GinggerTurmeric Shot",
@@ -1114,6 +1320,14 @@ function prevShot(){
 
 updateShot();
     updateProductBottle();
+
+function openContact(){
+    document.getElementById("contactOverlay").classList.add("active");
+}
+
+function closeContact(){
+    document.getElementById("contactOverlay").classList.remove("active");
+}
 
 
 </script>
