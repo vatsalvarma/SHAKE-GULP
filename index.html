@@ -781,6 +781,56 @@ body:has(.nav-item:hover) .nav-blur{
 }
 
         /* =============================
+   HAMBURGER MENU
+============================= */
+
+.hamburger{
+    display:none;
+    font-size:24px;
+    cursor:pointer;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+    position:fixed;
+    top:90px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:90%;
+    padding:25px;
+
+    border-radius:30px;
+
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.25);
+    border:1px solid rgba(255,255,255,0.4);
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    text-align:center;
+
+    z-index:200;
+
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
+}
+
+.mobile-menu a{
+    text-decoration:none;
+    color:#000;
+    font-weight:600;
+}
+
+.mobile-menu.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+        /* =============================
    MOBILE OPTIMIZATION
 ============================= */
 
@@ -788,11 +838,12 @@ body:has(.nav-item:hover) .nav-blur{
 
 /* NAVBAR */
 
-.navbar{
-    top:10px;
-    width:92%;
-    padding:10px 20px;
-    border-radius:40px;
+.nav-links{
+    display:none;
+}
+
+.hamburger{
+    display:block;
 }
 
 
@@ -1026,6 +1077,10 @@ body:has(.nav-item:hover) .nav-blur{
 
         </div>
 
+        <div class="hamburger" onclick="toggleMenu()">
+    ☰
+</div>
+
         <div class="nav-links" >
 
             <a href="#home">Home</a>
@@ -1073,6 +1128,16 @@ body:has(.nav-item:hover) .nav-blur{
         </div>
 
     </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#traditional" onclick="toggleMenu()">Traditional Drinks</a>
+    <a href="#wellness" onclick="toggleMenu()">Wellness Shots</a>
+    <a href="#read" onclick="toggleMenu()">Read</a>
+    <a href="#" onclick="openContact();toggleMenu()">Contact</a>
+
+</div>
 
     <div class="background"></div>
 
@@ -1603,6 +1668,18 @@ function closeContact(){
     document.getElementById("contactOverlay").classList.remove("active");
 }
 
+
+</script>
+
+    <script>
+
+function toggleMenu(){
+
+    const menu = document.getElementById("mobileMenu");
+
+    menu.classList.toggle("active");
+
+}
 
 </script>
 
