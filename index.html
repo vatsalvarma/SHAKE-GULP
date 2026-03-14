@@ -872,7 +872,7 @@ body:has(.nav-item:hover) .nav-blur{
 .bottle{
     width:220px;
     margin-top:20px;
-    
+
 }
 
 /* SIDE BOTTLES HIDE */
@@ -1062,6 +1062,27 @@ body:has(.nav-item:hover) .nav-blur{
 
 }
 
+.mobile-dropdown-title{
+    font-weight:600;
+    cursor:pointer;
+}
+
+.mobile-dropdown-links{
+    display:none;
+    flex-direction:column;
+    margin-top:8px;
+    gap:10px;
+}
+
+.mobile-dropdown-links a{
+    font-size:14px;
+    opacity:0.8;
+}
+
+.mobile-dropdown-links.active{
+    display:flex;
+}
+
     </style>
 </head>
 
@@ -1078,8 +1099,8 @@ body:has(.nav-item:hover) .nav-blur{
         </div>
 
         <div class="hamburger" onclick="toggleMenu()">
-    ☰
-</div>
+            ☰
+        </div>
 
         <div class="nav-links" >
 
@@ -1131,13 +1152,54 @@ body:has(.nav-item:hover) .nav-blur{
 
     <div class="mobile-menu" id="mobileMenu">
 
-    <a href="#home" onclick="toggleMenu()">Home</a>
-    <a href="#traditional" onclick="toggleMenu()">Traditional Drinks</a>
-    <a href="#wellness" onclick="toggleMenu()">Wellness Shots</a>
-    <a href="#read" onclick="toggleMenu()">Read</a>
-    <a href="#" onclick="openContact();toggleMenu()">Contact</a>
+        <a href="#home" onclick="toggleMenu()">Home</a>
 
-</div>
+        <!-- TRADITIONAL DROPDOWN -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-title" onclick="toggleMobileDropdown('traditionalList')">
+                Traditional Drinks ⮋
+            </div>
+
+            <div class="mobile-dropdown-links" id="traditionalList">
+
+                <a href="https://vatsalvarma.github.io/Jeerabtmlk-prbxx/">Jeera Buttermilk</a>
+                <a href="https://vatsalvarma.github.io/Masala-btmlk-prbxx/">Masala Buttermilk</a>
+                <a href="https://vatsalvarma.github.io/Dates-prbxx/">Date Buttermilk</a>
+                <a href="https://vatsalvarma.github.io/ragibrml-prbxxx/">Ragi Buttermilk</a>
+                <a href="https://vatsalvarma.github.io/Sabjalass-prbxs/">Sabja Lassi</a>
+                <a href="https://vatsalvarma.github.io/Sweetbtmlk-prbxx/">Buttermilk</a>
+                <a href="https://vatsalvarma.github.io/Nmpsabja/">Nimbu Sabja</a>
+                <a href="https://vatsalvarma.github.io/Nimpud-prbxx/">Nimbu Pudina</a>
+
+            </div>
+        </div>
+
+
+        <!-- WELLNESS DROPDOWN -->
+        <div class="mobile-dropdown">
+
+            <div class="mobile-dropdown-title" onclick="toggleMobileDropdown('wellnessList')">
+                Wellness Drinks ⮋   
+            </div>
+
+            <div class="mobile-dropdown-links" id="wellnessList">
+
+                <a href="https://vatsalvarma.github.io/Ginger-prbxx/">Ginger Shot</a>
+                <a href="https://vatsalvarma.github.io/GingTer-prbxx/">Ginger Turmeric</a>
+                <a href="https://vatsalvarma.github.io/Amla-prbrxx/">Amla Shot</a>
+                <a href="https://vatsalvarma.github.io/Neem-prbxx/">Neem Shot</a>
+                <a href="https://vatsalvarma.github.io/Moringa-prbxx/">Moringa Shot</a>
+                <a href="https://vatsalvarma.github.io/wheatgrass-prbxxx/">Wheatgrass Shot</a>
+                <a href="https://vatsalvarma.github.io/Barley-prbxx/">Barley Drink</a>
+
+            </div>
+
+        </div>
+
+        <a href="#read" onclick="toggleMenu()">Read</a>
+        <a href="#" onclick="openContact();toggleMenu()">Contact</a>
+
+    </div>
 
     <div class="background"></div>
 
@@ -1671,11 +1733,19 @@ function closeContact(){
 
 </script>
 
-    <script>
+<script>
 
-function toggleMenu(){
+    function toggleMenu(){
 
-    const menu = document.getElementById("mobileMenu");
+        const menu = document.getElementById("mobileMenu");
+
+        menu.classList.toggle("active");
+
+    }
+
+    function toggleMobileDropdown(id){
+
+    const menu = document.getElementById(id);
 
     menu.classList.toggle("active");
 
