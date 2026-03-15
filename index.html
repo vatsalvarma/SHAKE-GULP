@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -877,8 +878,39 @@ body:has(.nav-item:hover) .nav-blur{
 
 /* SIDE BOTTLES HIDE */
 
+/* MOBILE 3 BOTTLE STACK */
+
 .side-bottle{
-    display:none;
+    display:block;
+}
+
+/* CENTER BOTTLE */
+.bottle-container{
+    top:60%;
+    z-index:3;
+}
+
+/* CENTER BOTTLE SIZE */
+.bottle{
+    width:200px;
+}
+
+/* LEFT BOTTLE (behind) */
+.left-bottle{
+    left:35%;
+    top:59%;
+    transform:translate(-50%,-50%) scale(0.8);
+    opacity:0.8;
+    z-index:1;
+}
+
+/* RIGHT BOTTLE (behind) */
+.right-bottle{
+    right:-7%;
+    top:59%;
+    transform:translate(50%,-50%) scale(0.8);
+    opacity:0.8;
+    z-index:1;
 }
 
 /* INGREDIENTS SMALLER */
@@ -897,7 +929,7 @@ body:has(.nav-item:hover) .nav-blur{
 
 .jeera{
     width:80px;
-    bottom:20px;
+    bottom:8px;
     left:-10px;
 }
 
