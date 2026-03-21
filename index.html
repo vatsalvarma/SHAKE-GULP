@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,7 +144,7 @@
         .lemon{
             width:120px;
             left:202px;
-            bottom: 280px;
+            bottom: 350px;
         }
 
         .mint{
@@ -154,7 +155,7 @@
 
         .jeera{
             width:120px;
-            bottom:10px;
+            bottom:100px;
             left:-30px;
         }
 
@@ -1113,6 +1114,41 @@ body:has(.nav-item:hover) .nav-blur{
     display:flex;
 }
 
+   /* ===== FORCE STABLE CENTER + FLOAT FIX ===== */
+
+.bottle-container{
+    top:60%;
+    left:50%;
+    will-change: transform;
+}
+
+/* FLOAT animation WITH correct centering */
+.home-section .bottle-container{
+    animation: floatBottle 4s ease-in-out infinite !important;
+}
+
+/* IMPORTANT: keep translate(-50%, -50%) INSIDE animation */
+@keyframes floatBottle{
+    0%{
+        transform:translate(-50%, -50%) translateY(0px);
+    }
+    50%{
+        transform:translate(-50%, -50%) translateY(-15px);
+    }
+    100%{
+        transform:translate(-50%, -50%) translateY(0px);
+    }
+}
+
+/* Prevent image jump */
+.bottle{
+    width:320px;
+    height:500px;
+    object-fit:contain;
+    display:block;
+}
+
+
     </style>
 </head>
 
@@ -1502,31 +1538,26 @@ closeContact();
     ============================= */
 
   const bottles = [
-{
+  {
+     homeTitle: "SHAKE THE ROOTS \n GULP THE RITUAL",
 
-    homeTitle: "SHAKE THE SPICE \n GULP THE COOL",
+    name:"Neem Shot • Amla Shot • Moringa Shot",
 
-    name:"Buttermilk • Jeera Buttermilk • Masala Buttermilk",
+    bottle:"https://i.ibb.co/0j2DSPV3/Amla-577x616.png",
 
-    // CENTER
-    bottle:"https://i.ibb.co/RTbRShy8/Jeera-butermilk-shots-577x616.png",
+    leftBottle:"https://i.ibb.co/N21nQCHt/Neem-577x616.png",
+    rightBottle:"https://i.ibb.co/MyznJBNH/Moringa-577x616.png",
 
-    // SIDE images (can be same or different)
-    leftBottle:"https://i.ibb.co/S4gX0s5B/Buttermilk-577x616.png",
-    rightBottle:"https://i.ibb.co/ksgJhZWV/Masala-Buttermilk-577x616.png",
-
-    // CUSTOM POSITIONS
-    leftPosition:"28%",
-    rightPosition:"15%",
+    leftPosition:"32%",
+    rightPosition:"20%",
     centerScale:"1",
 
-    lemon:"https://i.ibb.co/yF0gLj2T/element-1-without-blured.png",
+    lemon:"https://i.ibb.co/SWKpNbY/Element-1-without-blured.png",
     mint:"",
-    jeera:"https://i.ibb.co/gM5z4Zb6/element-2-without-blured.png",
+    jeera:"https://i.ibb.co/gMX9pstf/Element-2-without-blured.png",
 
     content:" "
 },
-
 {
 
      homeTitle: "SHAKE THE GOODNESS \n GULP THE NOURISHMENT",
@@ -1571,22 +1602,26 @@ closeContact();
 },
 
 {
-     homeTitle: "SHAKE THE ROOTS \n GULP THE RITUAL",
 
-    name:"Neem Shot • Amla Shot • Moringa Shot",
+    homeTitle: "SHAKE THE SPICE \n GULP THE COOL",
 
-    bottle:"https://i.ibb.co/0j2DSPV3/Amla-577x616.png",
+    name:"Buttermilk • Jeera Buttermilk • Masala Buttermilk",
 
-    leftBottle:"https://i.ibb.co/N21nQCHt/Neem-577x616.png",
-    rightBottle:"https://i.ibb.co/MyznJBNH/Moringa-577x616.png",
+    // CENTER
+    bottle:"https://i.ibb.co/RTbRShy8/Jeera-butermilk-shots-577x616.png",
 
-    leftPosition:"32%",
-    rightPosition:"20%",
+    // SIDE images (can be same or different)
+    leftBottle:"https://i.ibb.co/S4gX0s5B/Buttermilk-577x616.png",
+    rightBottle:"https://i.ibb.co/ksgJhZWV/Masala-Buttermilk-577x616.png",
+
+    // CUSTOM POSITIONS
+    leftPosition:"28%",
+    rightPosition:"15%",
     centerScale:"1",
 
-    lemon:"https://i.ibb.co/SWKpNbY/Element-1-without-blured.png",
+    lemon:"https://i.ibb.co/yF0gLj2T/element-1-without-blured.png",
     mint:"",
-    jeera:"https://i.ibb.co/gMX9pstf/Element-2-without-blured.png",
+    jeera:"https://i.ibb.co/gM5z4Zb6/element-2-without-blured.png",
 
     content:" "
 }
@@ -1780,6 +1815,38 @@ function closeContact(){
     menu.classList.toggle("active");
 
 }
+
+
+    /* ===== FORCE POSITION RECALC ===== */
+
+function forceFixPosition(){
+    const el = document.querySelector(".bottle-container");
+
+    if(!el) return;
+
+    // hard reset transform (kills random offsets)
+    el.style.transform = "translate(-50%, -50%)";
+
+    // force browser reflow (important)
+    el.getBoundingClientRect();
+
+    // apply again to lock it
+    el.style.transform = "translate(-50%, -50%)";
+}
+
+/* run multiple times to beat image loading + layout shifts */
+window.addEventListener("load", () => {
+    updateBottle();
+
+    forceFixPosition();
+
+    setTimeout(forceFixPosition, 50);
+    setTimeout(forceFixPosition, 150);
+    setTimeout(forceFixPosition, 300);
+});
+
+/* also fix when resizing */
+window.addEventListener("resize", forceFixPosition);
 
 </script>
 
