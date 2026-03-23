@@ -275,8 +275,8 @@
 }
 
 .home-explore-btn:hover{
-    background:rgba(255,255,255,0.3);
-    transform:translateX(50%) translateY(-5px);
+ transform:scale(1.08);
+ transition:0.3s ease;
 }
 
         /* =============================
@@ -869,15 +869,6 @@ body:has(.nav-item:hover) .nav-blur{
     width:90%;
 }
 
-/* MAIN BOTTLE */
-
-.bottle{
-    width:220px;
-    margin-top:20px;
-
-}
-
-/* SIDE BOTTLES HIDE */
 
 /* MOBILE 3 BOTTLE STACK */
 
@@ -892,13 +883,25 @@ body:has(.nav-item:hover) .nav-blur{
 }
 
 /* CENTER BOTTLE SIZE */
+
+.home-section .bottle-container .bottle{
+      width:220px;
+  }
+
+  /* SIDE BOTTLES */
+  .home-section .side-bottle .bottle{
+      width:220px;
+  }
+
 .bottle{
-    width:200px;
+     width:220px;
+    margin-top:20px;
 }
 
 /* LEFT BOTTLE (behind) */
 .left-bottle{
-    left:35%;
+  width:90px !important;
+    left:22%;
     top:59%;
     transform:translate(-50%,-50%) scale(0.8);
     z-index:1;
@@ -912,24 +915,19 @@ body:has(.nav-item:hover) .nav-blur{
     z-index:1;
 }
 
+
 /* INGREDIENTS SMALLER */
 
 .lemon{
-    width:80px;
-    left:120px;
-    bottom:200px;
+    display:none;
 }
 
 .mint{
-    width:70px;
-    top:140px;
-    right:-80px;
+    display:none;
 }
 
 .jeera{
-    width:80px;
-    bottom:8px;
-    left:-10px;
+    display: none;
 }
 
 /* ARROWS */
@@ -1147,6 +1145,14 @@ body:has(.nav-item:hover) .nav-blur{
     object-fit:contain;
     display:block;
 }
+
+ /* more animations */
+
+.arrow:hover{
+    transform:translateY(-50%) scale(1.15);
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
 
 
     </style>
